@@ -1,0 +1,82 @@
+# Sistem Manajemen Perusahaan dengan R + MySQL
+
+## Ceritanya...
+
+Setiap perusahaan punya cerita yang tersimpan di datanya. Tapi sering kali 
+cerita itu terpecah-pecah — data karyawan di satu spreadsheet, absensi di 
+file lain, penilaian kinerja di folder yang entah di mana. Ketika seseorang 
+bertanya, "Sebenarnya, departemen mana yang paling boros anggaran gaji?" atau 
+"Siapa yang paling konsisten hadir bulan ini?", jawabannya butuh berjam-jam 
+merapikan data sebelum bisa diucapkan.
+
+Saya membayangkan sistem yang bisa menjawab pertanyaan-pertanyaan itu dalam 
+hitungan detik. Bukan dengan menyalin data ke sana kemari, tapi dengan 
+menyimpan semuanya di satu tempat — sebuah database MySQL — lalu membiarkan 
+R yang mengolahnya.
+
+Dari situlah proyek ini dimulai.
+
+## Apa yang Dibangun?
+
+Ini adalah sistem manajemen perusahaan sederhana, tapi lengkap. Bayangkan 
+sebuah kantor kecil dengan empat departemen: Sales, IT, Data Science, dan HR. 
+Setiap karyawan punya data diri, gaji, catatan absensi, dan skor kinerja. 
+Semua itu masuk ke dalam database, lalu sistem ini membantu kita:
+
+**Mengelola data karyawan.** Kita bisa melihat seluruh karyawan, menyaring 
+hanya yang di departemen Sales, menambah karyawan baru, menaikkan gaji, atau 
+menghapus karyawan yang sudah resign. Semua perubahan langsung tersimpan — 
+tidak ada data yang hilang di tengah jalan.
+
+**Membaca angkanya.** Sistem menghitung rata-rata gaji per departemen, siapa 
+yang bergaji paling tinggi dan paling rendah, seberapa konsisten karyawan 
+hadir, dan seberapa efisien gaji yang dibayarkan dibandingkan skor kinerja 
+mereka. Angka-angka ini disajikan dalam tabel yang langsung bisa dibaca.
+
+**Melihat polanya.** Tidak semua orang nyaman membaca tabel. Karena itu 
+sistem ini otomatis membuat grafik: batang rata-rata gaji, histogram skor 
+kinerja, rasio kehadiran tiap orang, dan sebaran hubungan antara gaji dan 
+kinerja. Grafik-grafik ini tersimpan sendiri sebagai file gambar, siap 
+ditempel di laporan atau presentasi.
+
+**Menebak ke depan.** Dari data yang ada, sistem membangun tiga model. Satu 
+mencoba memprediksi berapa gaji yang wajar untuk karyawan dengan skor kinerja 
+tertentu. Satu lagi mempelajari pola kehadiran. Dan satu lagi mengelompokkan 
+karyawan ke dalam beberapa kelompok berdasarkan gaji dan kinerja mereka — 
+membantu melihat siapa yang berada di kelompok berkinerja tinggi, siapa yang 
+perlu perhatian.
+
+**Merangkum semuanya.** Di akhir, satu fungsi mencetak laporan ringkasan: 
+berapa karyawan aktif, berapa total payroll, departemen mana yang paling 
+besar, bagaimana rata-rata kinerja, dan siapa tiga orang terbaik kuartal ini. 
+Semua dalam satu layar.
+
+## Bagaimana Semuanya Bekerja?
+
+Ada tiga lapisan yang bekerja bersama.
+
+Lapisan pertama adalah **database MySQL**. Di sinilah cerita disimpan: tabel 
+karyawan, tabel departemen, tabel absensi, dan tabel kinerja. Mereka saling 
+terhubung, jadi tidak ada data yang berdiri sendiri.
+
+Lapisan kedua adalah **R sebagai jembatan**. Lewat paket RMySQL dan DBI, R 
+terhubung ke MySQL, mengirim query, dan membawa pulang hasilnya dalam bentuk 
+data frame — seperti tabel yang bisa langsung diolah.
+
+Lapisan ketiga adalah **otak analisisnya**. Di sini dplyr merapikan data, 
+ggplot2 menggambar grafik, dan model statistik bekerja menebak pola. Semua 
+hasilnya — tabel, grafik, prediksi, laporan — kembali ke layar kita.
+
+Alurnya sederhana: data masuk ke MySQL, R mengambil dan mengolah, lalu 
+hasilnya bercerita.
+
+## Untuk Siapa Sistem Ini?
+
+Untuk siapa saja yang ingin melihat bagaimana data karyawan bisa berubah 
+menjadi keputusan. Mungkin Anda mahasiswa yang sedang belajar menghubungkan 
+R dengan database. Mungkin Anda HR yang penasaran bagaimana data absensi bisa 
+dibaca lebih dalam. Atau mungkin Anda hanya ingin tahu bagaimana rasanya 
+membangun sistem kecil yang utuh — dari database sampai laporan.
+
+
+
