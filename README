@@ -1,82 +1,116 @@
-# Sistem Manajemen Perusahaan dengan R + MySQL
+<div align="center">
 
-## Ceritanya...
+# 🏢 Sistem Manajemen Perusahaan
+### R + MySQL
 
-Setiap perusahaan punya cerita yang tersimpan di datanya. Tapi sering kali 
-cerita itu terpecah-pecah — data karyawan di satu spreadsheet, absensi di 
-file lain, penilaian kinerja di folder yang entah di mana. Ketika seseorang 
-bertanya, "Sebenarnya, departemen mana yang paling boros anggaran gaji?" atau 
-"Siapa yang paling konsisten hadir bulan ini?", jawabannya butuh berjam-jam 
-merapikan data sebelum bisa diucapkan.
+*Menyatukan data karyawan, absensi, dan kinerja dalam satu sistem — lalu mengubahnya menjadi keputusan.*
 
-Saya membayangkan sistem yang bisa menjawab pertanyaan-pertanyaan itu dalam 
-hitungan detik. Bukan dengan menyalin data ke sana kemari, tapi dengan 
-menyimpan semuanya di satu tempat — sebuah database MySQL — lalu membiarkan 
-R yang mengolahnya.
+![R](https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Status](https://img.shields.io/badge/status-active-brightgreen?style=for-the-badge)
 
-Dari situlah proyek ini dimulai.
+</div>
 
-## Apa yang Dibangun?
+---
 
-Ini adalah sistem manajemen perusahaan sederhana, tapi lengkap. Bayangkan 
-sebuah kantor kecil dengan empat departemen: Sales, IT, Data Science, dan HR. 
-Setiap karyawan punya data diri, gaji, catatan absensi, dan skor kinerja. 
-Semua itu masuk ke dalam database, lalu sistem ini membantu kita:
+## 📖 Ceritanya
 
-**Mengelola data karyawan.** Kita bisa melihat seluruh karyawan, menyaring 
-hanya yang di departemen Sales, menambah karyawan baru, menaikkan gaji, atau 
-menghapus karyawan yang sudah resign. Semua perubahan langsung tersimpan — 
-tidak ada data yang hilang di tengah jalan.
+> Setiap perusahaan punya cerita yang tersimpan di datanya. Tapi sering kali cerita itu terpecah-pecah — data karyawan di satu spreadsheet, absensi di file lain, penilaian kinerja di folder entah di mana.
+>
+> Ketika seseorang bertanya, *"Departemen mana yang paling boros anggaran gaji?"* atau *"Siapa yang paling konsisten hadir bulan ini?"* — jawabannya butuh berjam-jam merapikan data sebelum bisa diucapkan.
 
-**Membaca angkanya.** Sistem menghitung rata-rata gaji per departemen, siapa 
-yang bergaji paling tinggi dan paling rendah, seberapa konsisten karyawan 
-hadir, dan seberapa efisien gaji yang dibayarkan dibandingkan skor kinerja 
-mereka. Angka-angka ini disajikan dalam tabel yang langsung bisa dibaca.
+Saya membayangkan sistem yang bisa menjawab pertanyaan itu **dalam hitungan detik**. Bukan dengan menyalin data ke sana kemari, tapi menyimpan semuanya di satu tempat — database MySQL — lalu membiarkan R yang mengolahnya.
 
-**Melihat polanya.** Tidak semua orang nyaman membaca tabel. Karena itu 
-sistem ini otomatis membuat grafik: batang rata-rata gaji, histogram skor 
-kinerja, rasio kehadiran tiap orang, dan sebaran hubungan antara gaji dan 
-kinerja. Grafik-grafik ini tersimpan sendiri sebagai file gambar, siap 
-ditempel di laporan atau presentasi.
+Dari situlah proyek ini dimulai. 🚀
 
-**Menebak ke depan.** Dari data yang ada, sistem membangun tiga model. Satu 
-mencoba memprediksi berapa gaji yang wajar untuk karyawan dengan skor kinerja 
-tertentu. Satu lagi mempelajari pola kehadiran. Dan satu lagi mengelompokkan 
-karyawan ke dalam beberapa kelompok berdasarkan gaji dan kinerja mereka — 
-membantu melihat siapa yang berada di kelompok berkinerja tinggi, siapa yang 
-perlu perhatian.
+---
 
-**Merangkum semuanya.** Di akhir, satu fungsi mencetak laporan ringkasan: 
-berapa karyawan aktif, berapa total payroll, departemen mana yang paling 
-besar, bagaimana rata-rata kinerja, dan siapa tiga orang terbaik kuartal ini. 
-Semua dalam satu layar.
+## ✨ Apa yang Dibangun?
 
-## Bagaimana Semuanya Bekerja?
+<div align="center">
 
-Ada tiga lapisan yang bekerja bersama.
+| 🧩 Modul | 📌 Fungsi |
+|:---|:---|
+| 👥 **Manajemen Karyawan** | Lihat, filter, tambah, update, hapus data karyawan |
+| 📊 **Analisis Statistik** | Rata-rata gaji, rasio kehadiran, efisiensi gaji vs kinerja |
+| 📈 **Visualisasi Otomatis** | Bar chart, histogram, scatter plot — tersimpan otomatis |
+| 🔮 **Pemodelan Prediktif** | Regresi, klasifikasi, clustering karyawan |
+| 📋 **Laporan Ringkasan** | Cetak ringkasan perusahaan dalam satu layar |
+| 🖥️ **Menu Interaktif** | Jalankan semua modul lewat menu di konsol R |
 
-Lapisan pertama adalah **database MySQL**. Di sinilah cerita disimpan: tabel 
-karyawan, tabel departemen, tabel absensi, dan tabel kinerja. Mereka saling 
-terhubung, jadi tidak ada data yang berdiri sendiri.
+</div>
 
-Lapisan kedua adalah **R sebagai jembatan**. Lewat paket RMySQL dan DBI, R 
-terhubung ke MySQL, mengirim query, dan membawa pulang hasilnya dalam bentuk 
-data frame — seperti tabel yang bisa langsung diolah.
+---
 
-Lapisan ketiga adalah **otak analisisnya**. Di sini dplyr merapikan data, 
-ggplot2 menggambar grafik, dan model statistik bekerja menebak pola. Semua 
-hasilnya — tabel, grafik, prediksi, laporan — kembali ke layar kita.
+## 🔍 Sedikit Lebih Dalam
 
-Alurnya sederhana: data masuk ke MySQL, R mengambil dan mengolah, lalu 
-hasilnya bercerita.
+<details>
+<summary><b>👥 Manajemen Data Karyawan</b></summary>
 
-## Untuk Siapa Sistem Ini?
+<br>
 
-Untuk siapa saja yang ingin melihat bagaimana data karyawan bisa berubah 
-menjadi keputusan. Mungkin Anda mahasiswa yang sedang belajar menghubungkan 
-R dengan database. Mungkin Anda HR yang penasaran bagaimana data absensi bisa 
-dibaca lebih dalam. Atau mungkin Anda hanya ingin tahu bagaimana rasanya 
-membangun sistem kecil yang utuh — dari database sampai laporan.
+Lihat seluruh karyawan, saring hanya yang di departemen Sales, tambah karyawan baru, naikkan gaji, atau hapus yang sudah resign. Semua perubahan **langsung tersimpan** di MySQL — tidak ada data yang hilang di tengah jalan.
 
+</details>
 
+<details>
+<summary><b>📊 Analisis Statistik</b></summary>
 
+<br>
+
+Sistem menghitung:
+- Rata-rata, median, standar deviasi gaji per departemen
+- Total payroll tiap departemen
+- Rasio kehadiran tiap karyawan
+- Efisiensi gaji dibanding skor kinerja
+
+</details>
+
+<details>
+<summary><b>📈 Visualisasi Otomatis</b></summary>
+
+<br>
+
+Tidak semua orang nyaman membaca tabel. Karena itu sistem otomatis membuat:
+- Bar chart rata-rata gaji per departemen
+- Histogram distribusi skor kinerja
+- Bar chart rasio kehadiran
+- Scatter plot hubungan gaji vs kinerja
+
+Semua grafik **tersimpan sendiri** sebagai file PNG, siap ditempel di laporan.
+
+</details>
+
+<details>
+<summary><b>🔮 Pemodelan Prediktif</b></summary>
+
+<br>
+
+Tiga model dibangun dari data yang ada:
+
+1. **Regresi linear** — memprediksi gaji berdasarkan skor kinerja & departemen
+2. **Random forest** — mempelajari pola kehadiran
+3. **K-Means clustering** — mengelompokkan karyawan berdasarkan gaji dan kinerja
+
+</details>
+
+<details>
+<summary><b>📋 Laporan Ringkasan</b></summary>
+
+<br>
+
+Satu fungsi mencetak laporan: jumlah karyawan aktif, total payroll, departemen terbesar, rata-rata kinerja, rasio kehadiran, dan **top 3 karyawan terbaik** kuartal ini.
+
+</details>
+
+---
+
+## ⚙️ Bagaimana Semuanya Bekerja?
+
+```text
+┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
+│   MySQL         │  →   │   R (RMySQL)    │  →   │   Analisis      │
+│   Database      │      │   Jembatan      │      │   & Visualisasi │
+└─────────────────┘      └─────────────────┘      └─────────────────┘
+   Data karyawan           Query & ambil            Statistik, grafik,
+   absensi, kinerja        data frame               model, laporan
